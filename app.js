@@ -2,8 +2,9 @@ require('dotenv').config()
 const fs = require('fs');
 const path = require('path');
 const puppeteer = require('puppeteer-core');
+let user = 'admin';
 
-const absolutePath = path.join(__dirname, '../Test');
+const absolutePath = path.join(__dirname, `../export-sn-update-sets/update_set_exports/${user}`);
 
 function getFileNames(directory) {
     let fileNames = [];
@@ -13,7 +14,7 @@ function getFileNames(directory) {
 }
 
 let files = getFileNames(absolutePath);
-const url = `https:dev103056.service-now.com`;
+const url = process.env.INSTANCE;
 
 uploadUpdateSets(url, absolutePath, files);
 
